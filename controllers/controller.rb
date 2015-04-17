@@ -11,10 +11,6 @@ class Controller
     @deck = deck
   end
 
-  def get_card
-    @card = @deck.get_card
-  end
-
   def next_card
     @deck.next_card
   end
@@ -32,22 +28,26 @@ class Controller
     card.known = card.check_answer(answer)
   end
 
+  def card
+    deck.get_card
+  end
+
   def setup
     View.display_welcome
     start_deck
   end
 
-  def start_deck (reset = false)
-    @deck.reset if reset
-    get_card
+  def start_deck (done = false)
+    deck.reset if done
     show_side_one
     check_card_answer
-    show_side_one
+    show_side_two
     if deck.solved?
       View.display "Continue? Y/N"
       response = View.get_input
       response.downcase == "y" ?  start_deck true : quit
     else
+      deck.next_card
       start_deck
     end
   end
@@ -61,7 +61,7 @@ end
 
 
 def start_program
-  cards = Parser.parse_file("../flashcards_ddbb.txt")
+  cards = Parser.parse_file("../flashcard_samples.txt")
   cards = cards.map do |card|
     hash = {
       side1: card[0],
