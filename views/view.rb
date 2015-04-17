@@ -5,6 +5,8 @@ module View
     puts "Welcome To StellarFlash WindCards (The NSA is not watching you)"
     puts "*" * 50
     puts ""
+
+    puts "To quit at any time enter quit."
   end
 
   def self.display(string)
