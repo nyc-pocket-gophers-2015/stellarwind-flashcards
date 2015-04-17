@@ -5,7 +5,7 @@ require_relative "../helpers/parser"
 
 class Controller
 
-  attr_reader :card
+  attr_reader :card, :deck
 
   def initialize(deck)
     @deck = deck
@@ -25,7 +25,7 @@ class Controller
 
   def check_card_answer
     answer = View.get_input
-    card.known = card.check_answer(answer)
+    card.check_answer(answer)
   end
 
   def card
@@ -41,11 +41,13 @@ class Controller
     deck.reset if done
     show_side_one
     check_card_answer
+    puts card.answered
     show_side_two
+    puts card.known
     if deck.solved?
       View.display "Continue? Y/N"
       response = View.get_input
-      response.downcase == "y" ?  start_deck true : quit
+      response.downcase == "y" ?  start_deck(true) : quit
     else
       deck.next_card
       start_deck
@@ -64,9 +66,9 @@ def start_program
   cards = Parser.parse_file("../flashcard_samples.txt")
   cards = cards.map do |card|
     hash = {
-      side1: card[0],
-      side2: card[1],
-      known: card[2]
+      side1: card[0].chomp,
+      side2: card[1].chomp,
+      known: card[2] == nil ? "" : card[2].chomp
     }
     Card.new(hash)
   end
