@@ -28,7 +28,7 @@ defined?
 Paired with end, this can delimit a code block, much like curly braces; however, curly braces retain higher precedence.
 do
 
-Gives an "otherwise" within a function, if-statement, or for-loop, i.e. if cats = cute, puts "Yay!" else puts "Oh, a cat."
+Gives an "otherwise" within a function, if-statement, or for-loop, i.e. if cats = cute, puts "Yay!" else puts "Oh, a cat.”
 else
 
 Much like else, but has a higher precedence, and is usually paired with terms.
