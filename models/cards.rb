@@ -6,4 +6,17 @@ class Card
     @side2 = args[:side2]
     @known = args[:known] || false
   end
+
+  def check_answer(input)
+    known = true if input == side2
+  end
+
+  def answered
+    if known == true
+      return "Your answer is correct".
+     else
+      return "Sorry Keep on studying."
+    end
+  end
+
 end
