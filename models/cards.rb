@@ -4,7 +4,7 @@ class Card
   def initialize(args = {})
     @side1 = args[:side1]
     @side2 = args[:side2]
-    @known = args[:known] || false
+    @known = convert_bool(args[:known])
   end
 
   def check_answer(input)
@@ -17,6 +17,11 @@ class Card
      else
       return "Sorry Keep on studying."
     end
+  end
+
+  private
+  def convert_bool(input)
+    input == "true" ? return true : return false
   end
 
 end

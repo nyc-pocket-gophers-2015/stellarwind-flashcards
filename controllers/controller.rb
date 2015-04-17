@@ -12,7 +12,11 @@ class Controller
   end
 
   def get_card
-    @card = @deck.pop_card
+    @card = @deck.get_card
+  end
+
+  def next_card
+    @deck.next_card
   end
 
   def show_side_one
