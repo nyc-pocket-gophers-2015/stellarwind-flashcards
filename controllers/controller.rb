@@ -25,6 +25,7 @@ class Controller
 
   def check_card_answer
     answer = View.get_input
+    return if answer.downcase == "quit"
     card.check_answer(answer)
   end
 
