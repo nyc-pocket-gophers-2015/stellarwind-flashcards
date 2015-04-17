@@ -5,9 +5,11 @@ class Deck
   end
 
   def get_card
-    current_card = cards[0]
+    cards[0]
+  end
+
+  def next_card
     cards.rotate!
-    current_card
   end
 
   def reset
