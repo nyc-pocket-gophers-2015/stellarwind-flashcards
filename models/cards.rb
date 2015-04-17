@@ -8,20 +8,20 @@ class Card
   end
 
   def check_answer(input)
-    known = true if input == side2
+    self.known = true if input == side2
   end
 
   def answered
     if known == true
-      return "Your answer is correct".
+      "Your answer is correct."
      else
-      return "Sorry Keep on studying."
+      "Sorry Keep on studying."
     end
   end
 
   private
   def convert_bool(input)
-    input == "true" ? return true : return false
+    input == "true" ? true : false
   end
 
 end
