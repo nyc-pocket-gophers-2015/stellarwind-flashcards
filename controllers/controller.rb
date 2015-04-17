@@ -78,6 +78,7 @@ def start_program
     }
     Card.new(hash)
   end
+  puts cards
   deck = Deck.new(cards:cards)
   controller = Controller.new(deck)
   controller.setup
