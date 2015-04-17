@@ -1,3 +1,8 @@
+require_relative "../views/view"
+require_relative "../models/decks"
+require_relative "../models/cards"
+require_relative "../helpers/parser"
+
 class Controller
 
   attr_reader :card
@@ -18,12 +23,45 @@ class Controller
     View.display(card.side2)
   end
 
-  def check_answer
+  def check_card_answer
     answer = View.get_input
-    if card.check_answer(answer)
-        card.known = true
+    card.known = card.check_answer(answer)
+  end
+
+  def setup
+    View.display_welcome
+    start_deck
+  end
+
+  def start_deck (reset = false)
+    @deck.reset if reset
+    get_card
+    show_side_one
+    check_card_answer
+    show_side_one
+    if deck.solved?
+      View.display "Continue? Y/N"
+      response = View.get_input
+      response.downcase == "y" ?  start_deck true : quit
+    else
+      start_deck
     end
   end
 
+  def quit
+    View.display "Goodbye!!"
+    return
+  end
 
 end
+
+
+def start_program
+  cards = Parser.parse_file("../flashcards_ddbb.csv")
+  cards = cards.map{|card| Card.new(card)}
+  deck = Deck.new(cards:cards)
+  controller = Controller.new(deck)
+  controller.setup
+end
+
+start_program
