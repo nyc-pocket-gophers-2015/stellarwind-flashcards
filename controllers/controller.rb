@@ -7,6 +7,8 @@ class Controller
 
   attr_reader :card, :deck
 
+  FILE_PATH = "../flashcard_samples.txt"
+
   def initialize(deck)
     @deck = deck
   end
@@ -42,9 +44,9 @@ class Controller
     deck.reset if done
     show_side_one
     check_card_answer
-    puts card.answered
+    View.display card.answered
     show_side_two
-    puts card.known
+    save_answer
     if deck.solved?
       View.display "Continue? Y/N"
       response = View.get_input
@@ -60,11 +62,14 @@ class Controller
     return
   end
 
+  def save_answer
+    Parser.save(FILE_PATH,deck.cards)
+  end
 end
 
 
 def start_program
-  cards = Parser.parse_file("../flashcard_samples.txt")
+  cards = Parser.parse_file(Controller::FILE_PATH)
   cards = cards.map do |card|
     hash = {
       side1: card[0].chomp,
