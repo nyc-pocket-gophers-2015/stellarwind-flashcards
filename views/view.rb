@@ -6,11 +6,13 @@ module View
     puts "*" * 50
   end
 
-  def self.display()
-
+  def self.display(string)
+    puts string
   end
 
-
+  def self.get_input
+    gets.chomp
+  end
 
 
 
