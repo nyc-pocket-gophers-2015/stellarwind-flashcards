@@ -1,9 +1,9 @@
-A command that appends two or more objects together.
-and
-true
 Designates code that must be run unconditionally at the beginning of the program before any other.
 BEGIN
-true
+false
 To create a second name for the variable or method.
 alias
-true
+false
+A command that appends two or more objects together.
+and
+false

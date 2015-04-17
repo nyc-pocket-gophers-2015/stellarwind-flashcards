@@ -5,7 +5,7 @@ class Deck
   end
 
   def get_card
-    cards.detect{|card| !card.known}
+    cards[0]
   end
 
   def next_card
