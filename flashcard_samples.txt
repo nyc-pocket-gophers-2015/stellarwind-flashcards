@@ -1,9 +1,26 @@
-Designates code that must be run unconditionally at the beginning of the program before any other.
-BEGIN
-false
-To create a second name for the variable or method.
-alias
-false
-A command that appends two or more objects together.
-and
-false
+Delimits a "begin" block of code, which can allow the use of while and until in modifier position with multi-line statements.
+begin
+
+Gives an unconditional termination to a code block, and is usually placed with an argument.
+break
+
+starts a case statement; this block of code will output a result and end when it's terms are fulfilled, which are defined with when or else.
+case
+
+Opens a class definition block, which can later be reopened and added to with variables and even functions.
+class
+
+Used to define a function.
+def
+
+A boolean logic function that asks whether or not a targeted expression refers to anything recognizable in Ruby; i.e. literal object, local variable that has been initialized, method name visible from the current scope, etc.
+defined?
+
+Paired with end, this can delimit a code block, much like curly braces; however, curly braces retain higher precedence.
+do
+
+Gives an "otherwise" within a function, if-statement, or for-loop, i.e. if cats = cute, puts "Yay!" else puts "Oh, a cat.”
+else
+
+Much like else, but has a higher precedence, and is usually paired with terms.
+elsif
