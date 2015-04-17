@@ -3,24 +3,28 @@ require "csv"
 module Parser
 
   def self.parse_file(file)
+    lines = File.readlines(file)
     objects = []
-    CSV.read(file, headers: true, header_converters: :symbol).each do |row|
-      objects << row.to_hash
+    (lines.count/3).times do |index|
+        objects << lines.slice(index*3,3)
     end
     objects
   end
 
-  def self.save(file, data)
-    CSV.open(file, "w") do |row|
-      row << data[0].keys
-      data.each {|entry| row << entry.values }
+  def self.save(file, cards)
+    File.open(file,"w") do |file|
+      cards.each do |card|
+        file << card.side1
+        file << card.side2
+        file << card.known
+      end
     end
   end
 
 end
 
 
-# puts Parser.parse_file("../flashcards_ddbb.csv")
-# data = [{:side_one=>"question", :side_two=>"answer", :known=>"true"},{:side_one=>"question 2", :side_two=>"answer 2", :known=>"false"}]
+# puts File.methods.sort
+# data = [Card.new(side1:"card one side one\n", side2:"card one side two\n", known: "false\n"), ["card two side one\n", "card two side two\n", "\n"]]
 # Parser.save("../flashcards_ddbb.csv",data)
 # puts Parser.parse_file("../flashcards_ddbb.csv")

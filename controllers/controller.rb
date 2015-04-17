@@ -61,8 +61,15 @@ end
 
 
 def start_program
-  cards = Parser.parse_file("../flashcards_ddbb.csv")
-  cards = cards.map{|card| Card.new(card)}
+  cards = Parser.parse_file("../flashcards_ddbb.txt")
+  cards = cards.map do |card|
+    hash = {
+      side1: card[0],
+      side2: card[1],
+      known: card[2]
+    }
+    Card.new(hash)
+  end
   deck = Deck.new(cards:cards)
   controller = Controller.new(deck)
   controller.setup
