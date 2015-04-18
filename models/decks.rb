@@ -20,8 +20,8 @@ class Deck
     cards.all? { |card| card.known }
   end
 
-  def unsolved_cards
-    cards.select { |card| card.known == false}
-  end
+  # def unsolved_cards
+  #   cards.select { |card| card.known == false}
+  # end
 
 end

@@ -27,7 +27,6 @@ class Controller
 
   def check_card_answer
     answer = View.get_input
-    return if answer.downcase == "quit"
     card.check_answer(answer)
   end
 
@@ -78,7 +77,6 @@ def start_program
     }
     Card.new(hash)
   end
-  puts cards
   deck = Deck.new(cards:cards)
   controller = Controller.new(deck)
   controller.setup
