@@ -14,7 +14,8 @@ class Controller
   end
 
   def next_card
-    @deck.next_card
+    #no need for an instance variable here
+    deck.next_card
   end
 
   def show_side_one
@@ -27,7 +28,7 @@ class Controller
 
   def check_card_answer
     answer = View.get_input
-    return if answer.downcase == "quit"
+    return if answer.downcase == "quit" # noramlize user input
     card.check_answer(answer)
   end
 

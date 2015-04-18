@@ -1,5 +1,5 @@
 require "csv"
-
+# excellent use of a model
 module Parser
 
   def self.parse_file(file)
@@ -24,7 +24,4 @@ module Parser
 end
 
 
-# puts File.methods.sort
-# data = [Card.new(side1:"card one side one\n", side2:"card one side two\n", known: "false\n"), ["card two side one\n", "card two side two\n", "\n"]]
-# Parser.save("../flashcards_ddbb.csv",data)
- # Parser.parse_file("../flashcard_samples.txt")
+# never commit unused code
